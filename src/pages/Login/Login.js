@@ -1,6 +1,6 @@
 import styles from './Login.module.css';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useNavigate } from "react";
 
 import { useAuthentication } from "../../hooks/useAuthetication"; // Importando o hook de autenticação
 
@@ -19,6 +19,7 @@ const Login = () => {
       }
     }, [authError]);
   
+    const navigate = useNavigate();
     const handleSubmit = async (e) => {
       e.preventDefault();
       setError(""); // Limpa o erro antes de tentar cadastrar
@@ -28,8 +29,14 @@ const Login = () => {
         password,
       }
   
-    const res = await login(user);   
+    const res = await login(user);
+    
+    navigate("/dashboard"); // Redireciona para o dashboard após o login
+    if (res) {
+      setEmail("");
+      setPassword("");
     }
+  }
 
   return (
     <div className={styles.login}>
@@ -66,4 +73,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login()

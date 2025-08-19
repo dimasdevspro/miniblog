@@ -18,7 +18,7 @@ const Dashboard = () => {
   // Hook para deletar documentos
   const { deleteDocument, response } = useDeleteDocument("posts");
 
-  {response.error && <p className="error">{response.error}</p>}
+  
 
   return (
     <div className={styles.dashboard}>
